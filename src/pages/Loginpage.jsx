@@ -5,7 +5,7 @@ import GoogleIcon from "./../assets/google.png";
 import RocketCharacter from "./../assets/rocket.png";
 import { AuthContext } from "./../context/AuthContext";
 
-const Loginpage = () => {
+const LoginPage = () => {
   const [form, setForm] = useState({ emailOrUsername: "", password: "" });
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
@@ -207,4 +207,4 @@ const Loginpage = () => {
   );
 };
 
-export default Loginpage;
+export default LoginPage;
