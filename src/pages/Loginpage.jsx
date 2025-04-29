@@ -3,14 +3,12 @@ import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import GoogleIcon from "./../assets/google.png";
 import RocketCharacter from "./../assets/rocket.png";
-import { AuthContext } from "./../context/AuthContext";
 
 const LoginPage = () => {
   const [form, setForm] = useState({ emailOrUsername: "", password: "" });
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-  const { dispatch } = useContext(AuthContext);
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -41,9 +39,6 @@ const LoginPage = () => {
         localStorage.setItem("token", data.token);
         localStorage.setItem("user", JSON.stringify(data.user));
 
-        // Dispatch login action ke AuthContext
-        dispatch({ type: "LOGIN", payload: data.user });
-
         navigate("/dashboard"); // Redirect ke dashboard
       } else {
         setError(data.message || "Login failed");
@@ -73,9 +68,6 @@ const LoginPage = () => {
         // Simpan token dan user ke localStorage
         localStorage.setItem("token", data.token);
         localStorage.setItem("user", JSON.stringify(data.user));
-
-        // Dispatch login action ke AuthContext
-        dispatch({ type: "LOGIN", payload: data.user });
 
         navigate("/dashboard"); // Redirect ke dashboard
       } else {
