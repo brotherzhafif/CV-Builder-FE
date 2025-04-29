@@ -44,7 +44,7 @@ export default function Navbar() {
 
   const navLinkStyle = (id) => {
     if (isMobile) return "text-black hover:text-purple-500";
-    const baseColor = isScrolled ? "text-black" : "text-black";
+    const baseColor = "text-black";
     const activeColor = currentSection === id ? "text-purple-500" : "";
     const hoverColor = "hover:text-purple-500";
     return `${baseColor} ${hoverColor} ${activeColor}`;
@@ -52,13 +52,7 @@ export default function Navbar() {
 
   return (
     <div className="relative">
-      {/* Blur Layer hanya saat desktop */}
-      {!isMobile && (
-        <div
-          className={`fixed top-0 left-0 w-full h-[100px] z-40 transition-all duration-300 ${isScrolled ? "bg-white/30 backdrop-blur" : "bg-transparent"
-            }`}
-        />
-      )}
+
 
       {isMobile ? (
         <motion.header
@@ -74,7 +68,6 @@ export default function Navbar() {
                 alt="Logo"
                 className="w-full h-auto max-h-[50px] object-contain"
               />
-
             </a>
           </div>
 
@@ -122,31 +115,46 @@ export default function Navbar() {
               {dropdownOpen && (
                 <ul className="absolute right-0 z-50 flex flex-col items-center justify-center w-screen gap-3 py-4 mt-3 bg-white rounded-lg shadow-md px-9 menu menu-sm">
                   <li onClick={() => setDropdownOpen(false)}>
-                    <Link to="/" className="text-black hover:text-purple-500">Beranda</Link>
+                    <Link to="/" className="text-black hover:text-purple-500">
+                      Beranda
+                    </Link>
                   </li>
                   <li>
-                    <div onClick={() => setSubMenuOpen((prev) => !prev)} className="text-black hover:text-purple-500 cursor-pointer">
+                    <div
+                      onClick={() => setSubMenuOpen((prev) => !prev)}
+                      className="text-black hover:text-purple-500 cursor-pointer"
+                    >
                       Tentang Kami
                     </div>
                     {subMenuOpen && (
                       <ul className="bg-white shadow-sm rounded-md mt-1">
                         <li onClick={() => setDropdownOpen(false)}>
-                          <Link to="/visimisi" className="text-black hover:text-purple-500">CVScoring</Link>
+                          <Link to="/visimisi" className="text-black hover:text-purple-500">
+                            CVScoring
+                          </Link>
                         </li>
                         <li onClick={() => setDropdownOpen(false)}>
-                          <Link to="/divisi" className="text-black hover:text-purple-500">CVGenerator</Link>
+                          <Link to="/divisi" className="text-black hover:text-purple-500">
+                            CVGenerator
+                          </Link>
                         </li>
                         <li onClick={() => setDropdownOpen(false)}>
-                          <Link to="/faq" className="text-black hover:text-purple-500">FAQ</Link>
+                          <Link to="/faq" className="text-black hover:text-purple-500">
+                            FAQ
+                          </Link>
                         </li>
                       </ul>
                     )}
                   </li>
                   <li onClick={() => setDropdownOpen(false)}>
-                    <Link to="/informasi" className="text-black hover:text-purple-500">Informasi</Link>
+                    <Link to="/informasi" className="text-black hover:text-purple-500">
+                      Informasi
+                    </Link>
                   </li>
                   <li onClick={() => setDropdownOpen(false)}>
-                    <Link to="/contact" className="text-black hover:text-purple-500">Kontak</Link>
+                    <Link to="/contact" className="text-black hover:text-purple-500">
+                      Kontak
+                    </Link>
                   </li>
                   <div className="flex justify-center gap-2 mt-3">
                     <div className="border border-[#536CE3] p-2 w-[80px] h-[40px] rounded-2xl text-center">
@@ -164,13 +172,10 @@ export default function Navbar() {
         <motion.header
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{
-            type: "spring",
-            stiffness: 300,
-            damping: 20,
-          }}
-          className={`fixed top-0 right-0 left-0 z-50 flex items-center justify-between px-8 lg:px-12 xl:px-16 mx-[4%] lg:mx-[6%] xl:mx-[8%] mt-10 rounded-[20px] lg:rounded-[30px] h-[60px] transition-all duration-300 ${isScrolled ? "bg-white/70 backdrop-blur shadow-md" : "bg-transparent"
-            }`}
+          transition={{ type: "spring", stiffness: 300, damping: 20 }}
+          className={`fixed top-0 left-0 right-0 z-50 flex items-center justify-between w-full px-8 lg:px-12 xl:px-16 h-[70px] transition-all duration-300 ${
+            isScrolled ? "bg-white shadow-md" : ""
+          }`}
         >
           <div className="flex items-center gap-10">
             <div className="w-[120px]">
@@ -180,51 +185,50 @@ export default function Navbar() {
                   alt="Logo"
                   className="w-full h-auto max-h-[50px] object-contain"
                 />
-
               </Link>
             </div>
           </div>
 
-          <div className="flex gap-10 text-base lg:text-lg xl:text-xl items-center">
-            <Link to="/" className={navLinkStyle("getStarted")}>Beranda</Link>
+          <div className="flex gap-6 pr-2 text-base lg:text-lg xl:text-xl items-center">
+  <Link to="/" className={navLinkStyle("getStarted")}>Beranda</Link>
+  <div className="relative group">
+    <button className={navLinkStyle("whyUs")}>Tentang Kami</button>
+    <div className="absolute left-0 hidden pt-2 group-hover:block">
+      <ul className="bg-white rounded-lg shadow-md w-48 text-sm text-left">
+        <li>
+          <Link to="/visimisi" className="block px-4 py-2 text-black hover:text-purple-500">
+            CVScoring
+          </Link>
+        </li>
+        <li>
+          <Link to="/divisi" className="block px-4 py-2 text-black hover:text-purple-500">
+            CVGenerator
+          </Link>
+        </li>
+        <li>
+          <Link to="/faq" className="block px-4 py-2 text-black hover:text-purple-500">
+            FAQ
+          </Link>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <Link to="/informasi" className={navLinkStyle("qnA")}>Informasi</Link>
+  <Link to="/contact" className={navLinkStyle("testimonial")}>Kontak</Link>
+</div>
 
-            <div className="relative group">
-              <button className={navLinkStyle("whyUs")}>Tentang Kami</button>
-              <div className="absolute left-0 hidden pt-2 group-hover:block">
-                <ul className="bg-white rounded-lg shadow-md w-48 text-sm text-left">
-                  <li>
-                    <Link to="/visimisi" className="block px-4 py-2 text-black hover:text-purple-500">
-                      CVScoring
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/divisi" className="block px-4 py-2 text-black hover:text-purple-500">
-                      CVGenerator
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/faq" className="block px-4 py-2 text-black hover:text-purple-500">
-                      FAQ
-                    </Link>
-                  </li>
-                </ul>
-              </div>
-            </div>
+<div className="flex items-center gap-4 pr-20">
+  <div className="border border-[#536CE3] px-4 py-2 rounded-2xl">
+    <a
+      href="/Loginpage"
+      className="text-blue-500 hover:text-blue-700 transition-colors duration-300"
+    >
+      Login
+    </a>
+  </div>
+</div>
 
-            <Link to="/informasi" className={navLinkStyle("qnA")}>Informasi</Link>
-            <Link to="/contact" className={navLinkStyle("testimonial")}>Kontak</Link>
-          </div>
 
-          <div className="flex items-center gap-4">
-            <div className="border border-[#536CE3] px-4 py-2 rounded-2xl">
-              <a
-                href="/Loginpage"
-                className="text-blue-500 hover:text-blue-700 transition-colors duration-300"
-              >
-                Login
-              </a>
-            </div>
-          </div>
         </motion.header>
       )}
     </div>
