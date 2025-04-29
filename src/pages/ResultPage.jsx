@@ -1,5 +1,6 @@
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import NavBarDashboard from "../pageSection/navbarDashboard";
 
 export default function ResultPage() {
   const location = useLocation();
@@ -27,6 +28,7 @@ export default function ResultPage() {
 
   return (
     <div className="flex flex-col lg:flex-row items-start justify-center min-h-screen bg-gray-50 px-8 py-12 space-y-8 lg:space-y-0 lg:space-x-12">
+      <NavBarDashboard />
       {/* Left Section: Score Details */}
       <div className="bg-white shadow-md rounded-lg p-6 w-full lg:w-1/3">
         <h2 className="text-xl font-bold mb-4">Your Score</h2>

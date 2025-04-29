@@ -7,6 +7,7 @@ import PersonalDetailsForm from '../pageSection/PersonalDetailsForm';
 import SkillsForm from './../pageSection/SkillsForm';
 import SummaryForm from './../pageSection/SummaryForm';
 import WorkExperienceForm from './../pageSection/WorkExperienceForm';
+import NavBarDashboard from '../pageSection/navbarDashboard.jsx';
 
 const ResumeBuilderPage = () => {
   const tabs = ['Personal Details', 'Work Experience', 'Education', 'Skills', 'Summary'];
@@ -108,6 +109,8 @@ const ResumeBuilderPage = () => {
 
   return (
     <div className="min-h-screen bg-gray-100 flex justify-center items-center p-6">
+      <NavBarDashboard />
+
       <div className="w-full max-w-4xl bg-white rounded-2xl shadow-md">
         <h1 className="text-2xl font-bold mb-6 text-center pt-6">Build Your CV</h1>
         {!showCV && <Navbar activeTab={activeTab} setActiveTab={setActiveTab} />}

@@ -1,7 +1,7 @@
 import * as pdfjsLib from "pdfjs-dist";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
+import NavBarDashboard from "../pageSection/navbarDashboard";
 // Gunakan worker dari CDN
 pdfjsLib.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjsLib.version}/pdf.worker.min.js`;
 
@@ -65,6 +65,8 @@ export default function UploadCVPage() {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-50 px-4">
+      <NavBarDashboard />
+
       <h1 className="text-2xl font-bold mb-2">Upload Your CV</h1>
       <p className="text-gray-500 mb-6 text-center">
         Upload your PDF CV and get a score instantly based on content structure.
