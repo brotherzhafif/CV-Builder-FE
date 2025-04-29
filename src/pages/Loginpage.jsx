@@ -114,7 +114,7 @@ const LoginPage = () => {
           <div className="flex justify-between items-center mb-6">
             <div>
               <p className="text-gray-600">
-                Welcome to <span className="text-[#1e88e5] font-bold">LOREM</span>
+                Welcome to <span className="text-[#1e88e5] font-bold">MaxyBoostCareer</span>
               </p>
               <h2 className="text-3xl font-bold mt-2">Sign in</h2>
             </div>

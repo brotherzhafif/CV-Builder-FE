@@ -7,7 +7,7 @@ import PersonalDetailsForm from '../pageSection/PersonalDetailsForm';
 import SkillsForm from './../pageSection/SkillsForm';
 import SummaryForm from './../pageSection/SummaryForm';
 import WorkExperienceForm from './../pageSection/WorkExperienceForm';
-import NavBarDashboard from '../pageSection/navbarDashboard.jsx';
+import { Header, Footer } from './../pageSection/headerForm'; 
 
 const ResumeBuilderPage = () => {
   const tabs = ['Personal Details', 'Work Experience', 'Education', 'Skills', 'Summary'];
@@ -36,7 +36,7 @@ const ResumeBuilderPage = () => {
       return (
         <div className="space-y-4">
           <h2 className="text-xl font-semibold">CV Preview (PDF)</h2>
-          <div className="h-[600px] border rounded-md shadow">
+          <div className="h-[800px] border rounded-md shadow">
             <PDFViewer width="100%" height="100%">
               <CVPreviewPDF formData={formData} />
             </PDFViewer>
@@ -108,14 +108,21 @@ const ResumeBuilderPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 flex justify-center items-center p-6">
-      <NavBarDashboard />
-
-      <div className="w-full max-w-4xl bg-white rounded-2xl shadow-md">
-        <h1 className="text-2xl font-bold mb-6 text-center pt-6">Build Your CV</h1>
-        {!showCV && <Navbar activeTab={activeTab} setActiveTab={setActiveTab} />}
-        <div className="p-6">{renderSection()}</div>
+    <div className="min-h-screen flex flex-col">
+      {/* Header Baru */}
+      <Header />
+      
+      {/* Konten Utama */}
+      <div className="flex-grow bg-gray-100 flex justify-center items-center p-6 pb-20">
+        <div className="w-full max-w-4xl bg-white rounded-2xl shadow-md">
+          <h1 className="text-2xl font-bold mb-6 text-center pt-6">Build Your CV</h1>
+          {!showCV && <Navbar activeTab={activeTab} setActiveTab={setActiveTab} />}
+          <div className="p-6">{renderSection()}</div>
+        </div>
       </div>
+
+      {/* Footer Baru */}
+      <Footer />
     </div>
   );
 };

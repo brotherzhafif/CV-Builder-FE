@@ -1,5 +1,5 @@
 import React from 'react';
-import NavBarDashboard from './../pageSection/navBarDashboard';
+import NavBarDashboard from './../pageSection/navbarDashboard';
 
 export default function dashboard() {
   return (
