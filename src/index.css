@@ -6,8 +6,4 @@ html {
   scroll-behavior: smooth;
 }
 
-@layer utilities {
-
-}
-
-
+@layer utilities {}
