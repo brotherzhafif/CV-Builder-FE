@@ -12,7 +12,7 @@ export default function Dashboard() {
 
     if (!token) {
       // Kalau token tidak ada, redirect ke login
-      navigate('/login');
+      navigate('/Loginpage');
     }
   }, [navigate]);
 
