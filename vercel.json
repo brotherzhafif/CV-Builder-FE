@@ -3,5 +3,11 @@
         "env": {
             "PNPM_INSTALL_FLAGS": "--no-frozen-lockfile"
         }
-    }
+    },
+    "rewrites": [
+        {
+            "source": "/(.*)",
+            "destination": "/index.html"
+        }
+    ]
 }
