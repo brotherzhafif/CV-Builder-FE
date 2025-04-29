@@ -159,7 +159,7 @@ export default function NavBarDashboard() {
                         <a href="/UserProfile" className="flex items-center gap-4">
                           <div className="w-10 h-10">
                             <img
-                              src={user.profileImage || "https://static.wikitide.net/hoyodexwiki/9/92/Elysia_%28B3-MU-0%29.png"}
+                              src={user.profileImage || "https://img.icons8.com/?size=100&id=23265&format=png&color=000000"}
                               alt="Profile"
                               className="object-cover w-full h-full rounded-full"
                             />
@@ -203,7 +203,7 @@ export default function NavBarDashboard() {
               <a href="/UserProfile" className="flex items-center gap-4">
                 <div className="w-10 h-10">
                   <img
-                    src={user.profileImage || "https://static.wikitide.net/hoyodexwiki/9/92/Elysia_%28B3-MU-0%29.png"}
+                    src={user.profileImage || "https://img.icons8.com/?size=100&id=23265&format=png&color=000000"}
                     alt="Profile"
                     className="object-cover w-full h-full rounded-full"
                   />
