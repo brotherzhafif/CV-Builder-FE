@@ -1,11 +1,13 @@
 import { motion } from "framer-motion";
 import React, { useState } from "react";
-import RocketCharacter from "../assets/rocket.png"; // Tetap pakai gambar ini
+import { useNavigate } from "react-router-dom"; // Tambahkan ini
+import RocketCharacter from "../assets/rocket.png";
 
 const SignupPage = () => {
   const [form, setForm] = useState({ username: "", email: "", password: "" });
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate(); // Inisialisasi navigate
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -13,11 +15,11 @@ const SignupPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError("");
     setLoading(true);
+    setError("");
 
     try {
-      const response = await fetch("http://localhost:3001/register", {
+      const response = await fetch("https://cv-api-six.vercel.app/auth/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -28,10 +30,9 @@ const SignupPage = () => {
       const data = await response.json();
 
       if (response.ok) {
-        // Berhasil signup, redirect ke LoginPage
-        window.location.href = "/Loginpage";
+        // Redirect ke halaman login setelah berhasil register
+        navigate("/Loginpage");
       } else {
-        // Gagal signup, tampilkan error
         setError(data.message || "Registration failed");
       }
     } catch (err) {
@@ -70,7 +71,7 @@ const SignupPage = () => {
           <div className="flex justify-between items-center mb-6">
             <div>
               <p className="text-gray-600">
-                Welcome to <span className="text-[#1e88e5] font-bold">LOREM</span>
+                Welcome to <span className="text-[#1e88e5] font-bold">Maxy</span>
               </p>
               <h2 className="text-3xl font-bold mt-2">Sign up</h2>
             </div>

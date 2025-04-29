@@ -55,9 +55,8 @@ export default function Navbar() {
       {/* Blur Layer hanya saat desktop */}
       {!isMobile && (
         <div
-          className={`fixed top-0 left-0 w-full h-[100px] z-40 transition-all duration-300 ${
-            isScrolled ? "bg-white/30 backdrop-blur" : "bg-transparent"
-          }`}
+          className={`fixed top-0 left-0 w-full h-[100px] z-40 transition-all duration-300 ${isScrolled ? "bg-white/30 backdrop-blur" : "bg-transparent"
+            }`}
         />
       )}
 
@@ -70,11 +69,11 @@ export default function Navbar() {
         >
           <div className="w-[120px]">
             <a href="#getStarted">
-            <img 
-  src={Logo} 
-  alt="Logo" 
-  className="w-full h-auto max-h-[50px] object-contain"
-/>
+              <img
+                src={Logo}
+                alt="Logo"
+                className="w-full h-auto max-h-[50px] object-contain"
+              />
 
             </a>
           </div>
@@ -170,18 +169,17 @@ export default function Navbar() {
             stiffness: 300,
             damping: 20,
           }}
-          className={`fixed top-0 right-0 left-0 z-50 flex items-center justify-between px-8 lg:px-12 xl:px-16 mx-[4%] lg:mx-[6%] xl:mx-[8%] mt-10 rounded-[20px] lg:rounded-[30px] h-[60px] transition-all duration-300 ${
-            isScrolled ? "bg-white/70 backdrop-blur shadow-md" : "bg-transparent"
-          }`}
+          className={`fixed top-0 right-0 left-0 z-50 flex items-center justify-between px-8 lg:px-12 xl:px-16 mx-[4%] lg:mx-[6%] xl:mx-[8%] mt-10 rounded-[20px] lg:rounded-[30px] h-[60px] transition-all duration-300 ${isScrolled ? "bg-white/70 backdrop-blur shadow-md" : "bg-transparent"
+            }`}
         >
           <div className="flex items-center gap-10">
             <div className="w-[120px]">
               <Link to="/">
-              <img 
-  src={Logo} 
-  alt="Logo" 
-  className="w-full h-auto max-h-[50px] object-contain"
-/>
+                <img
+                  src={Logo}
+                  alt="Logo"
+                  className="w-full h-auto max-h-[50px] object-contain"
+                />
 
               </Link>
             </div>
@@ -201,7 +199,7 @@ export default function Navbar() {
                   </li>
                   <li>
                     <Link to="/divisi" className="block px-4 py-2 text-black hover:text-purple-500">
-                     CVGenerator
+                      CVGenerator
                     </Link>
                   </li>
                   <li>
@@ -219,8 +217,8 @@ export default function Navbar() {
 
           <div className="flex items-center gap-4">
             <div className="border border-[#536CE3] px-4 py-2 rounded-2xl">
-              <a 
-                href="/Loginpage" 
+              <a
+                href="/Loginpage"
                 className="text-blue-500 hover:text-blue-700 transition-colors duration-300"
               >
                 Login

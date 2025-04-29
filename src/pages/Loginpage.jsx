@@ -3,14 +3,14 @@ import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import GoogleIcon from "../assets/google.png";
 import RocketCharacter from "../assets/rocket.png";
-import { AuthContext } from "../context/AuthContext"; // Import AuthContext
+import { AuthContext } from "../context/AuthContext";
 
 const LoginPage = () => {
-  const [form, setForm] = useState({ email: "", password: "" });
+  const [form, setForm] = useState({ emailOrUsername: "", password: "" });
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-  const { dispatch } = useContext(AuthContext); // Get dispatch from AuthContext
+  const { dispatch } = useContext(AuthContext);
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -19,19 +19,73 @@ const LoginPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-  
-    // Simulasi bypass login (hapus semua validasi dan API call)
-    setTimeout(() => {
-      const user = { email: form.email }; // Simulasi data user
-      localStorage.setItem("token", "dummy-token");
-      localStorage.setItem("user", JSON.stringify(user));
+    setError("");
 
-      // Dispatch login action ke AuthContext
-      dispatch({ type: 'LOGIN', payload: user });
+    try {
+      const response = await fetch("https://cv-api-six.vercel.app/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: form.emailOrUsername.includes("@") ? form.emailOrUsername : undefined,
+          username: !form.emailOrUsername.includes("@") ? form.emailOrUsername : undefined,
+          password: form.password,
+        }),
+      });
 
-      navigate("/dashboard"); // Arahkan ke halaman dashboard setelah login
+      const data = await response.json();
+
+      if (response.ok) {
+        // Simpan token dan user ke localStorage
+        localStorage.setItem("token", data.token);
+        localStorage.setItem("user", JSON.stringify(data.user));
+
+        // Dispatch login action ke AuthContext
+        dispatch({ type: "LOGIN", payload: data.user });
+
+        navigate("/dashboard"); // Redirect ke dashboard
+      } else {
+        setError(data.message || "Login failed");
+      }
+    } catch (err) {
+      setError("Network error. Please try again.");
+    } finally {
       setLoading(false);
-    }, 1000); // delay sedikit biar user merasa ada proses
+    }
+  };
+
+  const handleGoogleLogin = async () => {
+    setLoading(true);
+    setError("");
+
+    try {
+      const response = await fetch("https://cv-api-six.vercel.app/auth/google-login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        // Simpan token dan user ke localStorage
+        localStorage.setItem("token", data.token);
+        localStorage.setItem("user", JSON.stringify(data.user));
+
+        // Dispatch login action ke AuthContext
+        dispatch({ type: "LOGIN", payload: data.user });
+
+        navigate("/dashboard"); // Redirect ke dashboard
+      } else {
+        setError(data.message || "Google login failed");
+      }
+    } catch (err) {
+      setError("Network error. Please try again.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -85,24 +139,28 @@ const LoginPage = () => {
           {/* Google Sign In */}
           <button
             type="button"
+            onClick={handleGoogleLogin}
             className="w-full flex items-center justify-center gap-2 py-2 mb-6 border rounded-lg bg-[#f5f8ff] hover:bg-[#ebefff] transition"
+            disabled={loading}
           >
             <img src={GoogleIcon} alt="Google" className="w-5 h-5" />
-            <span className="text-gray-700 font-medium">Sign in with Google</span>
+            <span className="text-gray-700 font-medium">
+              {loading ? "Signing in with Google..." : "Sign in with Google"}
+            </span>
           </button>
 
           {/* Form Login */}
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
               <label className="text-sm font-medium text-gray-700">
-                Enter your email address
+                Enter your email or username
               </label>
               <input
-                type="email"
-                name="email"
-                value={form.email}
+                type="text"
+                name="emailOrUsername"
+                value={form.emailOrUsername}
                 onChange={handleChange}
-                placeholder="Email address"
+                placeholder="Email or Username"
                 className="mt-1 w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1e88e5]"
                 required
               />

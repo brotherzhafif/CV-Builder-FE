@@ -1,25 +1,39 @@
-import { Route, Routes } from "react-router-dom";
-import Dashboard from "./pages/DashboardUtama.jsx";
-import Homepage from "./pages/Homepage.jsx";
-import LoginPage from "./pages/Loginpage.jsx";
-import Result from "./pages/ResultPage.jsx";
-import Resume from "./pages/ResumeBuilderPage.jsx";
-import SignUp from "./pages/SignUpPage.jsx";
-import Upload from "./pages/UploadCVPage.jsx";
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import LoginPage from "./pages/Loginpage";
+import SignupPage from "./pages/SignUpPage";
+import ResumeBuilderPage from "./pages/ResumeBuilderPage";
+import UploadCVPage from "./pages/UploadCVPage";
+import ProtectedRoute from "./components/ProtectedRoute";
 
-
-function App() {
+const App = () => {
   return (
-    <Routes>
-      <Route path="/" element={<Homepage />} />
-      <Route path="/Loginpage" element={<LoginPage />} />
-      <Route path="/Signup" element={<SignUp />} />
-      <Route path="/dashboard" element={<Dashboard />} />
-      <Route path="/upload" element={<Upload />} />
-      <Route path="/result" element={<Result />} />
-      <Route path="/resume" element={<Resume />} />
-    </Routes>
+    <Router>
+      <Routes>
+        {/* Rute publik */}
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/signup" element={<SignupPage />} />
+
+        {/* Rute yang membutuhkan autentikasi */}
+        <Route
+          path="/resume"
+          element={
+            <ProtectedRoute>
+              <ResumeBuilderPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/upload"
+          element={
+            <ProtectedRoute>
+              <UploadCVPage />
+            </ProtectedRoute>
+          }
+        />
+      </Routes>
+    </Router>
   );
-}
+};
 
 export default App;
