@@ -1,9 +1,9 @@
 import { motion } from "framer-motion";
 import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import GoogleIcon from "../assets/google.png";
-import RocketCharacter from "../assets/rocket.png";
-import { AuthContext } from "../context/AuthContext";
+import GoogleIcon from "./../assets/google.png";
+import RocketCharacter from "./../assets/rocket.png";
+import { AuthContext } from "./../context/AuthContext";
 
 const LoginPage = () => {
   const [form, setForm] = useState({ emailOrUsername: "", password: "" });

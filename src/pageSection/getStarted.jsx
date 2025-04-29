@@ -1,5 +1,5 @@
 import React from "react";
-import HeroImage from "../assets/imgsatu.png"; // sesuaikan path gambar kamu
+import HeroImage from "./../assets/imgsatu.png"; // sesuaikan path gambar kamu
 
 const HeroSection = () => {
   return (

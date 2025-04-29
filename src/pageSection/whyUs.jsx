@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import React from "react";
-import LogoSatvikara from "../assets/logosatvikara.png";
+import LogoSatvikara from "./../assets/logosatvikara.png";
 
 export default function Testimonial() {
   const stats = [

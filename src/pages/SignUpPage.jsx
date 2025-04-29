@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom"; // Tambahkan ini
-import RocketCharacter from "../assets/rocket.png";
+import RocketCharacter from "./../assets/rocket.png";
 
 const SignupPage = () => {
   const [form, setForm] = useState({ username: "", email: "", password: "" });

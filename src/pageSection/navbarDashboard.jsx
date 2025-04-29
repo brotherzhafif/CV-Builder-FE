@@ -1,7 +1,7 @@
 import { useMediaQuery } from "@uidotdev/usehooks";
 import { AnimatePresence, motion } from "framer-motion";
 import React, { useEffect, useRef, useState } from "react";
-import Logo from "../assets/m-logo.png";
+import Logo from "./../assets/m-logo.png";
 
 export default function NavBarDashboard() {
   const isLargeScreen = useMediaQuery("(max-width: 768px)");
@@ -79,9 +79,8 @@ export default function NavBarDashboard() {
   return (
     <div>
       {isLargeScreen ? (
-        <header className={`fixed top-0 left-0 right-0 z-50 flex items-center justify-between w-full px-6 py-3 transition-all duration-300 ${
-          isScrolled ? "bg-white shadow-md" : "bg-transparent"
-        }`}>
+        <header className={`fixed top-0 left-0 right-0 z-50 flex items-center justify-between w-full px-6 py-3 transition-all duration-300 ${isScrolled ? "bg-white shadow-md" : "bg-transparent"
+          }`}>
           <div className="w-[80px] h-[40px] overflow-hidden flex items-center">
             <a href="/dashboard">
               <img
@@ -181,9 +180,8 @@ export default function NavBarDashboard() {
           </div>
         </header>
       ) : (
-        <header className={`fixed top-0 left-0 right-0 z-50 flex items-center h-[50px] px-6 transition-all duration-300 md:text-sm lg:text-base ${
-          isScrolled ? "bg-white shadow-md" : "bg-transparent"
-        }`}>
+        <header className={`fixed top-0 left-0 right-0 z-50 flex items-center h-[50px] px-6 transition-all duration-300 md:text-sm lg:text-base ${isScrolled ? "bg-white shadow-md" : "bg-transparent"
+          }`}>
           <div className="w-[80px] h-[40px] overflow-hidden flex items-center">
             <a href="/dashboard">
               <img src={Logo} alt="Logo" className="w-full h-full object-contain" />

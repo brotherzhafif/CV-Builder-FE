@@ -1,14 +1,14 @@
 import React from 'react';
-import IconInstagram from '../assets/icon-instagram.png';
-import IconLinkedIn from '../assets/icon-linkedin.png';
-import IconYouTube from '../assets/icon-youtube.png';
-import LogoMaxy from '../assets/m-logo.png';
+import IconInstagram from './../assets/icon-instagram.png';
+import IconLinkedIn from './../assets/icon-linkedin.png';
+import IconYouTube from './../assets/icon-youtube.png';
+import LogoMaxy from './../assets/m-logo.png';
 
 export default function Footer() {
   return (
     <footer className="bg-[#0089ED] text-white px-6 md:px-20 py-10">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10 items-start">
-        
+
         {/* Kolom 1: Logo + Deskripsi */}
         <div className="space-y-4">
           <img src={LogoMaxy} alt="Logo Maxy Academy" className="w-28" />

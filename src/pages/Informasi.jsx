@@ -1,6 +1,6 @@
 import React from "react";
-import NavbarWhite from "../pageSection/NavbarWhite.jsx";
-import Footer from "../pageSection/footer.jsx";
+import NavbarWhite from "./../pageSection/NavbarWhite.jsx";
+import Footer from "./../pageSection/footer.jsx";
 
 const InformasiPage = () => {
   return (

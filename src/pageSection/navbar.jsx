@@ -2,7 +2,7 @@ import { useMediaQuery } from "@uidotdev/usehooks";
 import { motion } from "framer-motion";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import Logo from "../assets/m-logo.png";
+import Logo from "./../assets/m-logo.png";
 
 export default function Navbar() {
   const isMobile = useMediaQuery("(max-width: 768px)");

@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useInView } from "react-intersection-observer";
-import Footer from "../pageSection/footer.jsx";
-import GetStartedSection from "../pageSection/getStarted.jsx";
-import Navbar from "../pageSection/navbar.jsx";
+import Footer from "./../pageSection/footer.jsx";
+import GetStartedSection from "./../pageSection/getStarted.jsx";
+import Navbar from "./../pageSection/navbar.jsx";
 
 export default function Homepage() {
   const [activeSection, setActiveSection] = useState("");

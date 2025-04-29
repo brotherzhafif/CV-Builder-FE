@@ -1,12 +1,12 @@
 import { PDFDownloadLink, PDFViewer } from '@react-pdf/renderer';
 import React, { useState } from 'react';
-import Navbar from '../components/Navbar';
-import CVPreviewPDF from '../pageSection/CVPreviewPDF.jsx';
-import EducationForm from '../pageSection/EducationForm';
+import Navbar from './../components/Navbar';
+import CVPreviewPDF from './../pageSection/CVPreviewPDF.jsx';
+import EducationForm from './../pageSection/EducationForm';
 import PersonalDetailsForm from '../pageSection/PersonalDetailsForm';
-import SkillsForm from '../pageSection/SkillsForm';
-import SummaryForm from '../pageSection/SummaryForm';
-import WorkExperienceForm from '../pageSection/WorkExperienceForm';
+import SkillsForm from './../pageSection/SkillsForm';
+import SummaryForm from './../pageSection/SummaryForm';
+import WorkExperienceForm from './../pageSection/WorkExperienceForm';
 
 const ResumeBuilderPage = () => {
   const tabs = ['Personal Details', 'Work Experience', 'Education', 'Skills', 'Summary'];

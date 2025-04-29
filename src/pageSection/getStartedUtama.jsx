@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom"; // Tambahkan useNavigate
-import HeroImage from "../assets/imgsatu.png";
+import HeroImage from "./../assets/imgsatu.png";
 
 const HeroSection = () => {
   const navigate = useNavigate();
