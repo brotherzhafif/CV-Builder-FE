@@ -7,69 +7,60 @@ pdfjsLib.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.j
 
 export default function UploadCVPage() {
   const [file, setFile] = useState(null);
-  const [text, setText] = useState("");
+  const [isLoading, setIsLoading] = useState(false); // State untuk loading
   const navigate = useNavigate();
 
-  const handleUpload = (e) => {
-    const uploadedFile = e.target.files[0];
+  const handleUpload = (event) => {
+    const uploadedFile = event.target.files[0];
     if (uploadedFile && uploadedFile.type === "application/pdf") {
       setFile(uploadedFile);
-      const reader = new FileReader();
-      reader.onload = async function () {
-        try {
-          const extractedText = await extractTextFromPDF(reader.result);
-          setText(extractedText);
-        } catch (error) {
-          alert("Gagal membaca file PDF. Silakan coba file lain.");
-          console.error("Error extracting text from PDF: ", error);
-        }
-      };
-      reader.onerror = function () {
-        alert("Terjadi kesalahan saat membaca file PDF.");
-        console.error("FileReader error: ", reader.error);
-      };
-      reader.readAsArrayBuffer(uploadedFile);
     } else {
-      alert("Hanya file PDF yang diizinkan.");
+      alert("Please upload a valid PDF file.");
     }
   };
-  
-  const extractTextFromPDF = async (arrayBuffer) => {
+
+  const handleUploadToAPI = async () => {
+    if (!file) {
+      alert("Silakan unggah file PDF terlebih dahulu.");
+      return;
+    }
+
+    const token = localStorage.getItem("token");
+    if (!token) {
+      alert("Anda harus login untuk mengunggah CV.");
+      navigate("/login");
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append("cvFile", file);
+
+    setIsLoading(true); // Set loading ke true sebelum upload
     try {
-      const pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
-      let fullText = "";
-  
-      for (let i = 1; i <= pdf.numPages; i++) {
-        const page = await pdf.getPage(i);
-        const content = await page.getTextContent();
-        const strings = content.items.map((item) => item.str);
-        fullText += strings.join(" ");
+      const response = await fetch("https://cv-api-six.vercel.app/api/submit-cv", {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        body: formData,
+      });
+
+      if (!response.ok) {
+        throw new Error("Gagal mengunggah CV. Silakan coba lagi.");
       }
-  
-      fullText += `|PAGES=${pdf.numPages}`;
-      return fullText;
+
+      const data = await response.json();
+      if (data.success) {
+        navigate("/result", { state: { cv: data.cv } }); // Kirim seluruh objek cv
+      } else {
+        alert(data.message || "Terjadi kesalahan saat memproses CV.");
+      }
     } catch (error) {
-      console.error("Error extracting PDF content: ", error);
-      throw new Error("Gagal mengextract teks dari file PDF.");
+      console.error("Error uploading CV:", error);
+      alert("Gagal mengunggah CV. Silakan coba lagi.");
+    } finally {
+      setIsLoading(false); // Set loading ke false setelah selesai
     }
-  };
-  
-
-  const calculateScore = (text) => {
-    let score = 0;
-
-    if (text.toLowerCase().includes("profile")) score += 10;
-    if (text.toLowerCase().includes("skill")) score += 10;
-
-    const pageMatch = text.match(/\|PAGES=(\d+)/);
-    if (pageMatch && parseInt(pageMatch[1]) > 2) score += 10;
-
-    return score;
-  };
-
-  const handleScore = () => {
-    const score = calculateScore(text);
-    navigate("/result", { state: { score } });
   };
 
   return (
@@ -85,7 +76,7 @@ export default function UploadCVPage() {
       >
         <div className="flex flex-col items-center">
           <img
-            src="https://img.icons8.com/ios-filled/100/cloud-upload.png"
+            src="https://img.icons8.com/?size=100&id=41qMbxehez2N&format=png"
             alt="Upload"
             className="mb-4"
           />
@@ -102,13 +93,19 @@ export default function UploadCVPage() {
         />
       </label>
 
-      {text && (
+      {file && (
         <button
-          onClick={handleScore}
-          className="mt-8 bg-green-500 text-white px-6 py-2 rounded-full shadow-md hover:bg-green-600 transition"
+          onClick={handleUploadToAPI}
+          className={`mt-8 bg-green-500 text-white px-6 py-2 rounded-full shadow-md hover:bg-green-600 transition ${isLoading ? "opacity-50 cursor-not-allowed" : ""
+            }`}
+          disabled={isLoading} // Nonaktifkan tombol saat loading
         >
-          Get CV Score
+          {isLoading ? "Uploading..." : "Upload and Get CV Score"}
         </button>
+      )}
+
+      {isLoading && (
+        <p className="mt-4 text-blue-500">Please wait, your CV is being uploaded...</p>
       )}
 
       <button

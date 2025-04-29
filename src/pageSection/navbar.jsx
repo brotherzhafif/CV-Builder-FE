@@ -173,9 +173,8 @@ export default function Navbar() {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ type: "spring", stiffness: 300, damping: 20 }}
-          className={`fixed top-0 left-0 right-0 z-50 flex items-center justify-between w-full px-8 lg:px-12 xl:px-16 h-[70px] transition-all duration-300 ${
-            isScrolled ? "bg-white shadow-md" : ""
-          }`}
+          className={`fixed top-0 left-0 right-0 z-50 flex items-center justify-between w-full px-8 lg:px-12 xl:px-16 h-[70px] transition-all duration-300 ${isScrolled ? "bg-white shadow-md" : ""
+            }`}
         >
           <div className="flex items-center gap-10">
             <div className="w-[120px]">
@@ -190,43 +189,43 @@ export default function Navbar() {
           </div>
 
           <div className="flex gap-6 pr-2 text-base lg:text-lg xl:text-xl items-center">
-  <Link to="/" className={navLinkStyle("getStarted")}>Beranda</Link>
-  <div className="relative group">
-    <button className={navLinkStyle("whyUs")}>Tentang Kami</button>
-    <div className="absolute left-0 hidden pt-2 group-hover:block">
-      <ul className="bg-white rounded-lg shadow-md w-48 text-sm text-left">
-        <li>
-          <Link to="/visimisi" className="block px-4 py-2 text-black hover:text-purple-500">
-            CVScoring
-          </Link>
-        </li>
-        <li>
-          <Link to="/divisi" className="block px-4 py-2 text-black hover:text-purple-500">
-            CVGenerator
-          </Link>
-        </li>
-        <li>
-          <Link to="/faq" className="block px-4 py-2 text-black hover:text-purple-500">
-            FAQ
-          </Link>
-        </li>
-      </ul>
-    </div>
-  </div>
-  <Link to="/informasi" className={navLinkStyle("qnA")}>Informasi</Link>
-  <Link to="/contact" className={navLinkStyle("testimonial")}>Kontak</Link>
-</div>
+            <Link to="/" className={navLinkStyle("getStarted")}>Beranda</Link>
+            <div className="relative group">
+              <button className={navLinkStyle("whyUs")}>Tentang Kami</button>
+              <div className="absolute left-0 hidden pt-2 group-hover:block">
+                <ul className="bg-white rounded-lg shadow-md w-48 text-sm text-left">
+                  <li>
+                    <Link to="/visimisi" className="block px-4 py-2 text-black hover:text-purple-500">
+                      CVScoring
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/divisi" className="block px-4 py-2 text-black hover:text-purple-500">
+                      CVGenerator
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/faq" className="block px-4 py-2 text-black hover:text-purple-500">
+                      FAQ
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <Link to="/informasi" className={navLinkStyle("qnA")}>Informasi</Link>
+            <Link to="/contact" className={navLinkStyle("testimonial")}>Kontak</Link>
+          </div>
 
-<div className="flex items-center gap-4 pr-20">
-  <div className="border border-[#536CE3] px-4 py-2 rounded-2xl">
-    <a
-      href="/Loginpage"
-      className="text-blue-500 hover:text-blue-700 transition-colors duration-300"
-    >
-      Login
-    </a>
-  </div>
-</div>
+          <div className="flex items-center gap-4 pr-20">
+            <div className="border border-[#536CE3] px-4 py-2 rounded-2xl">
+              <a
+                href="/Loginpage"
+                className="text-blue-500 hover:text-blue-700 transition-colors duration-300"
+              >
+                Login
+              </a>
+            </div>
+          </div>
 
 
         </motion.header>

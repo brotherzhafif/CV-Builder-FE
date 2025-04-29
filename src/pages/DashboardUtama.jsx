@@ -9,7 +9,7 @@ export default function Dashboard() {
 
   useEffect(() => {
     const token = localStorage.getItem('token');
-    
+
     if (!token) {
       // Kalau token tidak ada, redirect ke login
       navigate('/login');
