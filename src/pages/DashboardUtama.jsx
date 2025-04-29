@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Footer from './../pageSection/footer';
 import GetStarted from './../pageSection/getStartedUtama';
-import NavBarDashboard from './../pageSection/navBarDashboard';
+import NavBarDashboard from './../pageSection/navbarDashboard';
 
 export default function Dashboard() {
   const navigate = useNavigate();
