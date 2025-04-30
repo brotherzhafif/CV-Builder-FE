@@ -34,6 +34,14 @@ const CVPreview = ({ formData }) => {
         </div>
       </header>
 
+      {/* Summary */}
+      {summary && (
+        <section className="space-y-2">
+          <h2 className="text-xl font-bold border-b pb-2">Summary</h2>
+          <p className="text-gray-600 whitespace-pre-line">{summary}</p>
+        </section>
+      )}
+
       {/* Work Experience */}
       {work?.length > 0 && (
         <section className="space-y-4">
@@ -93,14 +101,6 @@ const CVPreview = ({ formData }) => {
               </li>
             ))}
           </ul>
-        </section>
-      )}
-
-      {/* Summary */}
-      {summary && (
-        <section className="space-y-2">
-          <h2 className="text-xl font-bold border-b pb-2">Summary</h2>
-          <p className="text-gray-600 whitespace-pre-line">{summary}</p>
         </section>
       )}
     </div>

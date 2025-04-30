@@ -61,6 +61,14 @@ const CVPreviewPDF = ({ formData }) => {
           </View>
         </View>
 
+        {/* Summary */}
+        {summary && (
+          <View style={styles.section}>
+            <Text style={styles.sectionHeader}>Summary</Text>
+            <Text style={{ lineHeight: 1.4 }}>{summary}</Text>
+          </View>
+        )}
+
         {/* Work Experience */}
         {work?.length > 0 && (
           <View style={styles.section}>
@@ -127,14 +135,6 @@ const CVPreviewPDF = ({ formData }) => {
                 ))}
               </View>
             </View>
-          </View>
-        )}
-
-        {/* Summary */}
-        {summary && (
-          <View style={styles.section}>
-            <Text style={styles.sectionHeader}>Summary</Text>
-            <Text style={{ lineHeight: 1.4 }}>{summary}</Text>
           </View>
         )}
       </Page>
