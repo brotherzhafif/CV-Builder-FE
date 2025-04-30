@@ -7,7 +7,7 @@ import PersonalDetailsForm from '../pageSection/PersonalDetailsForm';
 import SkillsForm from './../pageSection/SkillsForm';
 import SummaryForm from './../pageSection/SummaryForm';
 import WorkExperienceForm from './../pageSection/WorkExperienceForm';
-import { Header, Footer } from './../pageSection/headerForm'; 
+import { Header, Footer } from './../pageSection/headerForm';
 
 const ResumeBuilderPage = () => {
   const tabs = ['Personal Details', 'Work Experience', 'Education', 'Skills', 'Summary'];
@@ -111,7 +111,7 @@ const ResumeBuilderPage = () => {
     <div className="min-h-screen flex flex-col">
       {/* Header Baru */}
       <Header />
-      
+
       {/* Konten Utama */}
       <div className="flex-grow bg-gray-100 flex justify-center items-center p-6 pb-20">
         <div className="w-full max-w-4xl bg-white rounded-2xl shadow-md">

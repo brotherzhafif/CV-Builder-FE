@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
   date: { color: '#666', fontSize: 10 },
   address: { color: '#666', fontSize: 9, marginBottom: 4 },
   educationItem: { flexDirection: 'row', justifyContent: 'space-between', marginBottom: 6 },
-  skillsColumn: { flexDirection: 'row', justifyContent: 'space-between', marginTop: 8 },
+  skillsColumn: { padding: 3, flexDirection: 'row', justifyContent: 'space-between', marginTop: 8 },
   skillsList: { width: '48%' },
 });
 
@@ -117,12 +117,12 @@ const CVPreviewPDF = ({ formData }) => {
             <Text style={styles.sectionHeader}>Skills</Text>
             <View style={styles.skillsColumn}>
               <View style={styles.skillsList}>
-                {skills.slice(0, Math.ceil(skills.length/2)).map((skill, i) => (
+                {skills.slice(0, Math.ceil(skills.length / 2)).map((skill, i) => (
                   <Text key={i} style={{ marginBottom: 4 }}>• {skill}</Text>
                 ))}
               </View>
               <View style={styles.skillsList}>
-                {skills.slice(Math.ceil(skills.length/2)).map((skill, i) => (
+                {skills.slice(Math.ceil(skills.length / 2)).map((skill, i) => (
                   <Text key={i} style={{ marginBottom: 4 }}>• {skill}</Text>
                 ))}
               </View>
