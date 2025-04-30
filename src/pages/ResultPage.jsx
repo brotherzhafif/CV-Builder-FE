@@ -1,14 +1,11 @@
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import NavBarDashboard from "../pageSection/navbarDashboard";
-import { Header, Footer } from './../pageSection/headerForm';
+import { Header, Footer } from "../pageSection/headerForm";
 
 export default function ResultPage() {
   const location = useLocation();
   const navigate = useNavigate();
   const { cv } = location.state || {};
-
-  console.log("CV Data:", cv); // Debugging untuk memastikan data diterima
 
   if (!cv) {
     return (
@@ -27,8 +24,41 @@ export default function ResultPage() {
   const { scoring, pdfUrl } = cv;
   const { scores, totalScore } = scoring;
 
-  return (
+  // Fungsi untuk memberikan saran berdasarkan skor
+  const getSuggestions = () => {
+    const suggestions = [];
 
+    if (scores.profileSummary < 15) {
+      suggestions.push("Perbaiki ringkasan profil Anda agar lebih menarik dan relevan.");
+    }
+    if (scores.cvLength < 15) {
+      suggestions.push("Pastikan panjang CV Anda sesuai dengan standar (tidak terlalu panjang atau pendek).");
+    }
+    if (scores.skills < 10) {
+      suggestions.push("Tambahkan lebih banyak keterampilan yang relevan dengan pekerjaan yang Anda lamar.");
+    }
+    if (scores.format < 10) {
+      suggestions.push("Perbaiki format CV Anda agar lebih profesional dan mudah dibaca.");
+    }
+    if (scores.keywords < 15) {
+      suggestions.push("Tambahkan lebih banyak kata kunci yang relevan dengan deskripsi pekerjaan.");
+    }
+    if (scores.professionalContacts < 5) {
+      suggestions.push("Pastikan Anda menyertakan kontak profesional seperti email dan nomor telepon.");
+    }
+
+    if (totalScore >= 90) {
+      suggestions.push("CV Anda sudah sangat bagus! Tidak ada perbaikan yang diperlukan.");
+    } else if (totalScore < 50) {
+      suggestions.push("CV Anda memerlukan banyak perbaikan. Fokus pada semua aspek yang dinilai.");
+    }
+
+    return suggestions;
+  };
+
+  const suggestions = getSuggestions();
+
+  return (
     <div className="flex flex-col min-h-screen bg-gray-50">
       <Header />
       <div className="flex flex-col lg:flex-row items-start justify-center min-h-screen bg-gray-50 px-8 py-12 space-y-8 lg:space-y-0 lg:space-x-12">
@@ -63,6 +93,23 @@ export default function ResultPage() {
               <span className="font-bold text-green-600">{scores.professionalContacts}/10</span>
             </div>
           </div>
+
+          {/* Suggestions Section */}
+          <div className="mt-6">
+            <h3 className="text-lg font-bold mb-4">Suggestions for Improvement</h3>
+            {suggestions.length > 0 ? (
+              <ul className="list-disc list-inside space-y-2">
+                {suggestions.map((suggestion, index) => (
+                  <li key={index} className="text-gray-700">
+                    {suggestion}
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <p className="text-gray-700">No suggestions available.</p>
+            )}
+          </div>
+
           <button
             onClick={() => navigate("/")}
             className="mt-6 bg-blue-500 text-white px-6 py-2 rounded-full hover:bg-blue-600"
@@ -89,7 +136,7 @@ export default function ResultPage() {
           </a>
         </div>
       </div>
+      <Footer />
     </div>
-
   );
 }
